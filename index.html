@@ -828,9 +828,12 @@
 
                 $('.big_word_area').removeClass("bigbigvideo")
                 if (isiOS) {
+                    alert(isiOS)
                     $('.big_word_area').empty()
                     $('.big_word_area').append(`<video poster playsinline id='video1' src=${display.WordMovieSet[2].Path_ios}  width="100%" ></video>`)
                 } else {
+                    alert(isiOS)
+
                     $('.big_word_area').empty()
                     $('.big_word_area').append(`<video poster playsinline id='video1' src=${display.WordMovieSet[2].Path}  width="100%" ></video>`)
                 }
