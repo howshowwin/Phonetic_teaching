@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>發音練習</title>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script src="word/L6/01/01.js"></script>
+    <script src="word/L6/02/02.js"></script>
+    <script src="word/L6/03/03.js"></script>
+    <script src="word/L6/04/04.js"></script>
+    <script src="js/dragscroll.js"></script>
+
+    <link rel="stylesheet" href="">
+
+    <style>
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
+
+        * {
+            font-family: "微軟正黑體";
+        }
+
+        body {
+            position: relative;
+        }
+
+        .background_cover {
+            background: url(img/iik.PNG);
+            background-size: cover;
+            opacity: 0.5;
+            position: absolute;
+            pointer-events: none;
+
+
+        }
+
+        .color {
+            background: #FDF4BE;
+        }
+
+        .background {
+            background: url(img/wordGridBg.jpg);
+            background-size: cover;
+            position: absolute;
+            transform-origin: 0 0
+        }
+
+        .penlineBox {
+            border: 2px solid #DE643E;
+            position: absolute;
+            top: 78%;
+            left: 40%;
+            overflow: hidden;
+            background: #fff;
+
+        }
+
+        .penlineBox .flexbox {
+            display: flex;
+            height: 100%;
+
+        }
+
+        .penlineBox .flexbox .left {
+            background: #DE643E;
+            /* border: 2px solid #DE643E; */
+
+            display: block;
+            width: 17%;
+            height: 100%;
+            position: relative;
+        }
+
+
+        .penlineBox .flexbox .right {
+            /* background: #DE643E; */
+            display: block;
+            width: 83%;
+            height: 100%;
+            position: relative;
+
+        }
+
+        .total {
+            border-radius: 50px;
+            position: absolute;
+            background: #EDB39C;
+            top: 7%;
+            writing-mode: vertical-lr;
+            font-weight: 700;
+            left: 3%;
+
+        }
+
+        .total .word {
+            position: absolute;
+            top: 12%;
+            left: -5%;
+        }
+
+        .penLineNum {
+            position: absolute;
+            top: 7%;
+            left: 48%;
+            color: #DE643E;
+        }
+
+        .penlineBox .flexbox .left .word {
+            position: absolute;
+            writing-mode: vertical-lr;
+            white-space: nowrap;
+            left: 4%;
+            top: 21%;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* teach */
+        .teachWay {
+            border: 2px solid #DE643E;
+            position: absolute;
+            left: 81%;
+            background: #fff;
+
+        }
+
+        .top-area {
+            background: #DE643E;
+            position: relative;
+        }
+
+        .top-area .word {
+            position: absolute;
+            font-weight: 700;
+            color: #fff;
+            top: 13%;
+            left: 37%;
+
+        }
+
+        .middle-area {
+            position: relative;
+        }
+
+        .btn {
+            font-weight: 700;
+            position: absolute;
+            cursor: pointer;
+
+        }
+
+        .stroke_order {
+            top: 11%;
+            left: 38%;
+        }
+
+        .stroke_draw {
+            top: 30.5%;
+            left: 38%;
+        }
+
+        .stroke_mix {
+            top: 50.5%;
+            left: 38%;
+        }
+
+        .stroke_alert {
+            top: 71.5%;
+            left: 38%;
+        }
+
+        .stroke_combo {
+            font-weight: 700;
+            position: absolute;
+            top: 81%;
+            left: 38%;
+            cursor: pointer;
+
+        }
+
+        .select_arrow {
+            position: absolute;
+
+        }
+
+        .selcetnow1 {
+            position: absolute;
+            left: 32%;
+            top: 13%;
+
+        }
+
+        .selcetnow2 {
+            position: absolute;
+            left: 32%;
+            top: 32%;
+
+        }
+
+        .selcetnow3 {
+            position: absolute;
+            left: 32%;
+            top: 53%;
+
+        }
+
+        .selcetnow4 {
+            position: absolute;
+            left: 32%;
+            top: 75%;
+
+        }
+
+        .display_none {
+            display: none;
+        }
+
+        .stroke_combo_arrow img,
+        .select_arrow img,
+        .down_btn img,
+        .up_btn img {
+            height: 100%;
+
+        }
+
+        .stroke_combo_arrow {
+            position: absolute;
+            left: 32%;
+            top: 85%;
+        }
+
+        .select_btn {
+            border-radius: 50%;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+
+
+        }
+
+        .select_btn::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            width: 0;
+            vertical-align: middle;
+        }
+
+        .select_btn_area {
+            /* border: solid 2px red; */
+            position: relative;
+        }
+
+        .down_btn {
+            position: absolute;
+            top: 27.5%;
+            left: 3%;
+            cursor: pointer;
+
+        }
+
+        .up_btn {
+            position: absolute;
+            top: 27.5%;
+            left: 95%;
+            cursor: pointer;
+
+        }
+
+        .select_btn1 {
+            position: absolute;
+            top: 20%;
+            left: 11%;
+        }
+
+        .select_btn2 {
+            position: absolute;
+            top: 20%;
+            left: 25%;
+        }
+
+        .select_btn3 {
+            position: absolute;
+            top: 20%;
+            left: 39%;
+        }
+
+        .select_btn4 {
+            position: absolute;
+            top: 20%;
+            left: 53%;
+        }
+
+        .select_btn5 {
+            position: absolute;
+            top: 20%;
+            left: 67%;
+        }
+
+        .select_btn6 {
+            position: absolute;
+            top: 20%;
+            left: 81.7%;
+        }
+
+        .play_btn_area {
+            position: relative;
+        }
+
+        .btnplay {
+            /* border: solid 1px red; */
+            text-align: center;
+            font-weight: 700;
+            position: absolute;
+            box-shadow: 2px 2px 2px #999999, 0px 0px 2px #999999;
+            cursor: pointer;
+
+        }
+
+        .play_btn {
+            top: 8%;
+            left: 2%;
+        }
+
+        .repeat_btn {
+            top: 55%;
+            left: 2%;
+        }
+
+        .pre_btn {
+            top: 8%;
+            left: 53%;
+        }
+
+        .next_btn {
+            top: 55%;
+
+            left: 53%;
+
+        }
+
+        .btnplay::before {
+            content: '';
+            display: inline-block;
+            height: 120%;
+            width: 0;
+            vertical-align: middle;
+        }
+
+        /* 延伸教學 */
+        .more-teach {
+            border: solid 2px #DE643E;
+            position: absolute;
+            left: 81%;
+            top: 45%;
+            background: #fff;
+        }
+
+        .more-teach-top-area {
+            background: #DE643E;
+            font-weight: 700;
+            text-align: center;
+            color: #fff;
+
+        }
+
+        .more-teach-top-area::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            width: 0;
+            vertical-align: middle;
+        }
+
+        .more-teach-bottom-area::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            width: 0;
+            vertical-align: middle;
+        }
+
+        .more-teach-bottom-area {
+            text-align: center;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .choose-arrow {
+            position: absolute;
+            top: 0;
+        }
+
+        .more-t {
+            top: 55%;
+            left: 30%;
+        }
+
+        /* 十字隔線 */
+        .ten-word-line {
+            border: solid 2px #DE643E;
+            position: absolute;
+            left: 81%;
+            top: 55.9%;
+            background: #fff;
+
+        }
+
+        .btn_ten {
+            box-shadow: 2px 2px 2px #999999, 0px 0px 2px #999999;
+            position: absolute;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn_ten::before {
+            content: '';
+            display: inline-block;
+            height: 110%;
+            width: 0;
+            vertical-align: middle;
+        }
+
+        .solid {
+            top: 50%;
+            left: 2%;
+        }
+
+        .dot {
+            top: 50%;
+            left: 36%;
+        }
+
+        .none {
+            top: 50%;
+            left: 69%;
+        }
+
+        /* 大字區 */
+        .big_word_area {
+            border: red solid 1px;
+            position: absolute;
+            top: 2.5%;
+            left: 31.5%;
+            background: #fff;
+        }
+
+        .line_box {
+            position: absolute;
+            top: 2.5%;
+            left: 31.5%;
+        }
+
+        /* 注音區 */
+        .simple_area {
+            /* border: red solid 1px; */
+            position: absolute;
+            top: 1%;
+            left: 10%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .simple {
+            /* border: red solid 1px; */
+            background: #fff;
+            font-family: "標楷體";
+            font-family: 'cwTeXKai', serif;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .simple::before {
+            content: '';
+            display: inline-block;
+            height: 110%;
+            width: 0;
+            vertical-align: middle;
+        }
+
+        .teaching {
+            background: rgba(255, 255, 255, 0.7);
+            position: absolute;
+            z-index: 999;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .sound {
+            position: absolute;
+            left: 93%;
+            top: 3%;
+            background: #79CDBF;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .sound img {
+            height: 60%;
+            position: absolute;
+            left: 15%;
+            top: 20%;
+        }
+
+        .bigvideo {
+            left: 27%;
+        }
+
+        .bigbigvideo {
+            left: 27%;
+        }
+
+        .width {
+            position: absolute;
+            left: 50%;
+            z-index: 888;
+        }
+
+        .height {
+            position: absolute;
+            top: 50%;
+            z-index: 888;
+
+        }
+
+        .width-dot {
+            position: absolute;
+            left: 50%;
+            z-index: 888;
+        }
+
+        .height-dot {
+            position: absolute;
+            top: 50%;
+            z-index: 888;
+
+        }
+
+        .soundimg {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="dragscroll">
+    <!-- onmousewheel='return bbimg(this) -->
+    <div class="background " onmousewheel='return bbimg(this)'>
+
+        <!-- 總筆畫 -->
+        <div class="penlineBox">
+            <div class="flexbox">
+                <div class="left">
+                    <div class="word">
+                        筆畫
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="total">
+                        <div class="word">
+                            總筆畫
+                        </div>
+                    </div>
+                    <div class="penLineNum"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 教學方式 -->
+        <div class="teachWay">
+            <div class="top-area">
+                <div class="word">教學方式</div>
+            </div>
+            <div class="middle-area">
+                <div class="select_arrow selcetnow1 "><img src="img/caret-right-solid.svg" alt=""></div>
+                <div class="select_arrow selcetnow2 display_none"><img src="img/caret-right-solid.svg" alt=""></div>
+                <div class="select_arrow selcetnow3 display_none"><img src="img/caret-right-solid.svg" alt=""></div>
+                <div class="select_arrow selcetnow4 display_none"><img src="img/caret-right-solid.svg" alt=""></div>
+
+                <div class="btn stroke_order">筆順教學</div>
+                <div class="btn stroke_draw ">書寫提醒</div>
+                <div class="btn stroke_mix">發音示範</div>
+                <div class="btn stroke_alert">發音技巧</div>
+            </div>
+
+            <div class="select_btn_area">
+                <div class="down_btn"><img src="img/left.svg" alt=""></div>
+                <div class="select_btn select_btn1">1</div>
+                <div class="select_btn select_btn2">2</div>
+                <div class="select_btn select_btn3">3</div>
+                <div class="select_btn select_btn4">4</div>
+                <div class="select_btn select_btn5">5</div>
+                <div class="select_btn select_btn6">6</div>
+                <div class="up_btn"><img src="img/right.svg" alt=""></div>
+
+            </div>
+            <div class="play_btn_area">
+                <div class="btnplay play_btn">播放</div>
+                <div class="btnplay repeat_btn">單筆重複</div>
+                <div class="btnplay pre_btn">上一筆</div>
+                <div class="btnplay next_btn">下一筆</div>
+            </div>
+
+
+        </div>
+
+        <!-- 延伸教學 -->
+        <div class="more-teach">
+            <div class="more-teach-top-area">
+                延伸教學
+            </div>
+            <div class="select_arrow more-t display_none"><img src="img/caret-right-solid.svg" alt=""></div>
+
+
+            <div class="more-teach-bottom-area">
+                語詞教學
+            </div>
+        </div>
+        <!-- 十字隔線 -->
+        <div class="ten-word-line">
+            <div class="more-teach-top-area">
+                十字格線
+            </div>
+            <div class="ten-word-bottom-area">
+                <div class="btn_ten solid">實線</div>
+                <div class="btn_ten dot">虛線</div>
+                <div class="btn_ten none">隱藏</div>
+            </div>
+
+
+
+        </div>
+
+        <div class="teaching display_none">
+
+        </div>
+
+        <!-- 大字區 -->
+        <div class="line_box">
+
+
+        </div>
+
+        <div class="big_word_area">
+
+        </div>
+        <!-- 注音區 -->
+        <div class="simple_area">
+
+
+        </div>
+    </div>
+    <!-- <div class="background_cover"></div> -->
+    <script src="js/resize.js"></script>
+
+
+    <script>
+        var l6 = "word/L6/L6.json"
+        var obj
+        var alldata = new Array()
+        var display
+        var o = -1
+        var time = 0
+        var none = 0
+        var close = 0
+        var choose_stroke_teach
+        var choose_write_alert
+        var choose_speak_doit
+        var choose_speak_skill
+        var doNotReadAudio = 1
+        // getLessonData(l6)
+        // function getLessonData(file) {
+        //     var jsondata = {};
+        //     $.getJSON(file, function (data, status) {
+        //         console.log('是是不是成功讀到資料' + status)
+        //         if (status == 'success') {
+        //             lesson = data;
+        //             //在這裡可以呼叫函式
+        //             console.log(lesson)
+        //             // dosomething();
+        //             obj = Object.keys(lesson).map(function (_) { return lesson[_]; });
+
+        //             return lesson;
+        //         } else {
+        //             console.log("沒有讀取到本地檔案：" + status);
+        //             return false;
+        //         }
+        //     })
+        // }
+
+
+        // function getClassData(file) {
+        //     var jsondata = {};
+        //     $.getJSON(file, function (data, status) {
+        //         console.log('是是不是成功讀到資料' + status)
+        //         if (status == 'success') {
+        //             word = data;
+        //             //在這裡可以呼叫函式
+        //             console.log(word)
+        //             o++
+        //             console.log(o)
+        //             // dosomething();
+        //             alldata.push(word)
+        //             alldata = alldata.sort(function (a, b) {
+        //                 return a.WordAudioPath < b.WordAudioPath ? -1 : 1;
+        //             });
+        //             console.log(alldata)
+        //             return word;
+        //         } else {
+        //             console.log("沒有讀取到本地檔案：" + status);
+        //             return false;
+        //         }
+        //     })
+        // }
+
+
+
+
+        //
+
+
+
+        //自訂更改內容從這以下開始----------------------------------------------------------------------------------------------
+
+        //如果要新增更多文字，設定好JS檔後，還要來這邊向後增加,word5,word6....
+        var alldata = [word1, word2, word3, word4]
+        for (i = 0; i < alldata.length; i++) {
+
+            $('.simple_area').append(`<div class="simple" data-word='${i}'>${alldata[i].Name}</div>`)
+            convertSizeALL()
+
+        }
+
+        //像是ㄍ為第一個字的話，alldata[0]與eq(0) 
+        //ㄛ為第二字的話就為，alldata[1]與eq(1)
+        //...以此類推
+
+
+        var play_speed = 1
+        // setTimeout(function () {
+        display = alldata[1]
+        $('.simple').eq(1).css({
+            background: "#FDF4BE"
+        })
+
+
+
+        //自訂更改內容從這以下結束----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+        var audio = new Audio(display.WordAudioPath);
+        audio.play();
+
+        console.log(display.WordMovieSet[0].Path)
+
+
+
+
+
+
+        $('.big_word_area').empty()
+        $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[0].Path} width="100%" ></video>`)
+        $('.penLineNum').html(display.AllNumber)
+        $('.stroke_order').css({
+            color: "rgb(229,40,123)"
+        })
+        setTimeout(function () {
+
+            mm = 0
+            none = 1
+            kk = 0
+            qq = 0
+            uu = 1
+            close = 0
+
+
+        }, 1000)
+
+
+        var timebox
+
+        $('.simple_area').on("click", '.simple', function () {
+            $('.line_box').removeClass("display_none")
+
+            $(this).css({ background: "#FDF4BE" })
+            $('.simple').not(this).css({ background: "#Fff" })
+            display = alldata[$(this).data("word")]
+            $('.penLineNum').html(display.AllNumber)
+            console.log(display.WordMovieSet[0].Path)
+            if (doNotReadAudio == 1) {
+                var audio = new Audio(display.WordAudioPath);
+                audio.play();
+            }
+
+            $('.big_word_area').removeClass("bigvideo")
+            $('.big_word_area').removeClass("bigbigvideo")
+
+            $('.big_word_area').empty()
+            $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[0].Path} width="100%" ></video>`)
+
+            if (choose_stroke_teach == 1) {
+                $('.big_word_area').removeClass("bigvideo")
+                $('.big_word_area').removeClass("bigbigvideo")
+
+                $('.big_word_area').empty()
+                $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[0].Path} width="100%" ></video>`)
+            }
+            if (choose_write_alert == 1) {
+                $('.big_word_area').removeClass("bigvideo")
+                $('.big_word_area').removeClass("bigbigvideo")
+
+                $('.big_word_area').empty()
+                $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[1].Path} width="100%" ></video>`)
+            }
+            if (choose_speak_doit == 1) {
+                $('.big_word_area').addClass("bigvideo")
+                $('.line_box').addClass('display_none')
+
+                $('.big_word_area').removeClass("bigbigvideo")
+
+                $('.big_word_area').empty()
+                $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[2].Path} width="100%" ></video>`)
+            }
+            if (choose_speak_skill == 1) {
+                $('.big_word_area').removeClass("bigvideo")
+                $('.big_word_area').addClass("bigbigvideo")
+                $('.line_box').addClass('display_none')
+
+
+                $('.big_word_area').empty()
+                $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[3].Path} width="100%" ></video>`)
+            }
+
+
+
+            $('.teaching').empty()
+            $('.repeat_btn').css({
+                background: "#AAAAAA",
+                color: "#fff"
+            })
+            qq = 0
+            if (displaytenline == 0) {
+                $('.line_box').addClass('display_none')
+            }
+            $('.teaching').append(`           
+             <div class="sound">
+            <img  src="img/volume-up-solid.svg" alt="">
+
+            </div>
+            <img class="soundimg" src=${display.WordsSet[0].Path} alt="">`
+            )
+            convertSizeALL()
+        })
+
+        function common(sel, num) {
+            $('.select_arrow').not(sel).addClass('display_none')
+            $(sel).removeClass('display_none')
+            $('.big_word_area').empty()
+            $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[num].Path} width="100%" ></video>`)
+
+
+        }
+        function playvedio() {
+            var v = document.getElementById('video1')
+            v.playbackRate = play_speed
+            v.onloadedmetadata = function () {
+                console.log(v.duration)
+            };
+            v.play();
+            $('.play_btn').html(`${v.paused ? "播放" : "暫停"}`)
+            v.addEventListener('ended', function () {
+                $('.play_btn').html("播放")
+
+            }, false);
+
+
+
+        }
+        $('.stroke_alert').click(function () {
+            $('.line_box').addClass("display_none")
+
+            common('.selcetnow4', 3)
+            // time = 3
+            $('.teaching').empty()
+            $('.teaching').addClass('display_none')
+            $('.penlineBox').removeClass('display_none')
+            $('.big_word_area').removeClass('display_none')
+            $('.more-teach-bottom-area').css({ color: "#000" })
+            $('.big_word_area').addClass("bigbigvideo")
+            $('.big_word_area').removeClass("bigvideo")
+
+            convertSizeALL();
+            choose_stroke_teach = 0
+            choose_write_alert = 0
+            choose_speak_doit = 0
+            choose_speak_skill = 1
+            displaytenline = 1
+            none = 0
+            doNotReadAudio = 1
+
+            uu = 1
+            close = 1
+
+            playvedio()
+
+        })
+        $('.stroke_mix').click(function () {
+            $('.line_box').addClass("display_none")
+
+            common('.selcetnow3', 2)
+            // time = 2
+            $('.teaching').empty()
+            $('.teaching').addClass('display_none')
+            $('.penlineBox').removeClass('display_none')
+            $('.big_word_area').removeClass('display_none')
+            $('.more-teach-bottom-area').css({ color: "#000" })
+            $('.big_word_area').addClass("bigvideo")
+            $('.big_word_area').removeClass("bigbigvideo")
+
+            convertSizeALL();
+            choose_stroke_teach = 0
+            choose_write_alert = 0
+            choose_speak_doit = 1
+            choose_speak_skill = 0
+            displaytenline = 1
+            doNotReadAudio = 1
+
+            none = 0
+            uu = 1
+            close = 1
+
+            playvedio()
+
+        })
+        $('.stroke_draw ').click(function () {
+            $('.line_box').removeClass("display_none")
+
+            common('.selcetnow2', 1)
+            // time = 1
+            $('.teaching').empty()
+            $('.teaching').addClass('display_none')
+            $('.penlineBox').removeClass('display_none')
+            $('.big_word_area').removeClass('display_none')
+            $('.more-teach-bottom-area').css({ color: "#000" })
+            $('.big_word_area').removeClass("bigvideo")
+            $('.big_word_area').removeClass("bigbigvideo")
+
+            convertSizeALL();
+            choose_stroke_teach = 0
+            choose_write_alert = 1
+            choose_speak_doit = 0
+            choose_speak_skill = 0
+            displaytenline = 1
+            doNotReadAudio = 1
+
+            none = 0
+            uu = 1
+            close = 1
+            playvedio()
+
+        })
+        $('.stroke_order').click(function () {
+            $('.line_box').removeClass("display_none")
+
+            common('.selcetnow1', 0)
+
+            // time = 0
+            $('.teaching').empty()
+            $('.teaching').addClass('display_none')
+            $('.penlineBox').removeClass('display_none')
+            $('.big_word_area').removeClass('display_none')
+            $('.more-teach-bottom-area').css({ color: "#000" })
+            $('.big_word_area').removeClass("bigvideo")
+            $('.big_word_area').removeClass("bigbigvideo")
+
+            convertSizeALL();
+            choose_stroke_teach = 1
+            choose_write_alert = 0
+            choose_speak_doit = 0
+            choose_speak_skill = 0
+            doNotReadAudio = 1
+
+
+
+
+            displaytenline = 1
+            mm = 0
+            none = 1
+            kk = 0
+            qq = 0
+            uu = 1
+            close = 0
+            playvedio()
+
+
+        })
+        $('.select_btn3').css({
+            background: "rgb(222,100,62)",
+            color: "#fff"
+
+
+        })
+        $('.select_btn').click(function () {
+            $(this).css({
+                background: "rgb(222,100,62)",
+                color: "#fff"
+
+            })
+            $('.select_btn').not(this).css({
+                background: "#fff",
+                color: "#000"
+            })
+        })
+
+        var select_active = 3
+        $('.up_btn').click(function () {
+
+            if (select_active < 6) {
+                select_active++
+            } else if (select_active == 6) {
+                select_active = select_active
+
+            }
+            speed(0.5 + (select_active - 1) * 0.25)
+            $(`.select_btn`).css({
+                background: "#fff",
+                color: "#000"
+            })
+
+            $(`.select_btn${select_active}`).css({
+                background: "rgb(222,100,62)",
+                color: "#fff"
+            })
+        })
+        $('.down_btn').click(function () {
+            if (select_active > 1) {
+                select_active--
+
+            } else if (select_active == 1) {
+                select_active = select_active
+
+            }
+            speed(0.5 + (select_active - 1) * 0.25)
+            $(`.select_btn`).css({
+                background: "#fff",
+                color: "#000"
+            })
+
+            $(`.select_btn${select_active}`).css({
+                background: "rgb(222,100,62)",
+                color: "#fff"
+            })
+        })
+
+        function speed(spe) {
+            play_speed = spe
+            var v = document.getElementById('video1')
+
+            v.playbackRate = play_speed
+
+        }
+        $('.select_btn1').click(function () {
+            speed(0.5)
+            select_active = 1
+
+        })
+        $('.select_btn2').click(function () {
+
+            speed(0.75)
+            select_active = 2
+        })
+        $('.select_btn3').click(function () {
+            speed(1)
+            select_active = 3
+
+        })
+        $('.select_btn4').click(function () {
+            speed(1.25)
+
+            select_active = 4
+
+        })
+        $('.select_btn5').click(function () {
+
+            speed(1.5)
+            select_active = 5
+        })
+        $('.select_btn6').click(function () {
+            speed(1.75)
+            select_active = 6
+
+        })
+
+        var mm = 0
+        var kk = 0
+        var qq = 0
+        var uu = 1
+        $('.play_btn').click(function () {
+            if (uu) {
+                var v = document.getElementById('video1')
+                $('.play_btn').html(`${v.paused ? "暫停" : "播放"}`)
+                v.paused ? v.play() : v.pause();
+                v.playbackRate = play_speed
+                v.addEventListener('ended', function () {
+                    $('.play_btn').html("播放")
+
+                }, false);
+            }
+
+        })
+
+        $('.btn').click(function () {
+            $(this).css({
+                color: "rgb(229,40,123)"
+            })
+            $('.btn').not(this).css({
+                color: "#000"
+            })
+            let h = $(this).css('top')
+            console.log(h)
+        })
+        var hadclick
+        var num_now
+
+        $('.pre_btn').click(function () {
+            var v = document.getElementById('video1')
+            var cutime = display.WordMovieSet[time].MoviePointSet
+            let clone = cutime.concat()
+            clone.push(v.duration)
+            var currentTimenow = v.currentTime + 0.01
+            clone.push(currentTimenow)
+            clone.sort(function (a, b) {
+                return a - b
+            });
+            var indexnow = clone.indexOf(currentTimenow)
+
+            console.log(clone)
+            if (mm == 1 && uu == 1 && none == 1) {
+                if (clone[indexnow] == 1) {
+                    v.src = `${display.WordMovieSet[0].Path}#t=${clone[0]},${clone[1]}`;
+
+                } else {
+                    v.src = `${display.WordMovieSet[0].Path}#t=${clone[indexnow - 2]},${clone[indexnow - 1]}`;
+
+                }
+                v.play()
+                v.playbackRate = play_speed
+            }
+
+
+        })
+
+        setInterval(() => {
+            var v = document.getElementById('video1')
+            if (v) {
+                $('.play_btn').html(`${v.paused ? "播放" : "暫停"}`)
+                if (v.currentTime == 0) {
+                    $('.pre_btn').css({
+                        background: "#AAAAAA",
+                        color: "#fff"
+                    })
+                    mm = 0
+                } else if (v.currentTime > 0) {
+                    $('.pre_btn').css({
+                        background: "#fff",
+                        color: "#000"
+                    })
+                    mm = 1
+
+                }
+                // if (v.currentTime == v.duration) {
+                //     $('.next_btn').css({
+                //         background: "#AAAAAA",
+                //         color: "#fff"
+                //     })
+                //     kk = 0
+                // } else 
+                if (v.currentTime < v.duration) {
+                    $('.next_btn').css({
+                        background: "#fff",
+                        color: "#000"
+                    })
+                    kk = 1
+
+                }
+                if (v.paused && v.currentTime != 0) {
+                    $('.repeat_btn').css({
+                        background: "#fff",
+                        color: "#000"
+                    })
+                    qq = 1
+                } else {
+                    $('.repeat_btn').css({
+                        background: "#AAAAAA",
+                        color: "#fff"
+                    })
+                    qq = 0
+
+                }
+                if (close == 1) {
+                    $('.pre_btn').css({
+                        background: "#AAAAAA",
+                        color: "#fff"
+                    })
+                    $('.next_btn').css({
+                        background: "#AAAAAA",
+                        color: "#fff"
+                    })
+                    $('.repeat_btn').css({
+                        background: "#AAAAAA",
+                        color: "#fff"
+                    })
+                }
+            }
+            // window.moveTo(x,y)
+
+        }, 100);
+
+        $('.next_btn').click(function () {
+            var v = document.getElementById('video1')
+            var cutime = display.WordMovieSet[time].MoviePointSet
+            let clone = cutime.concat()
+            clone.push(v.duration)
+            var currentTimenow = v.currentTime + 0.01
+            clone.push(currentTimenow)
+            clone.sort(function (a, b) {
+                return a - b
+            });
+            var indexnow = clone.indexOf(currentTimenow)
+            console.log(clone[indexnow])
+            console.log(cutime[cutime.length - 1])
+            if (kk == 1 && uu == 1 && none == 1) {
+                if (indexnow == 1 && clone[indexnow] != 0.01) {
+                    v.src = `${display.WordMovieSet[0].Path}#t=${clone[indexnow + 1]},${clone[indexnow + 2]}`;
+                    v.play()
+                } else if (clone[indexnow] >= cutime[cutime.length - 1] + 0.01) {
+                    v.src = `${display.WordMovieSet[0].Path}#t=${clone[0]}`;
+
+                }
+                else {
+                    v.src = `${display.WordMovieSet[0].Path}#t=${clone[indexnow]},${clone[indexnow + 1]}`;
+                    v.play()
+                }
+
+                v.playbackRate = play_speed
+            }
+
+        })
+        $('.repeat_btn').click(function () {
+            var v = document.getElementById('video1')
+            var cutime = display.WordMovieSet[time].MoviePointSet
+            let clone = cutime.concat()
+            clone.push(v.duration)
+            var currentTimenow = v.currentTime + 0.01
+            clone.push(currentTimenow)
+            clone.sort(function (a, b) {
+                return a - b
+            });
+            var indexnow = clone.indexOf(currentTimenow)
+
+            console.log(clone)
+            if (qq == 1 && uu == 1 && none == 1) {
+                if (clone[indexnow] == clone[clone.length - 1]) {
+                    v.src = `${display.WordMovieSet[0].Path}#t=${clone[indexnow - 2]},${clone[indexnow - 1]}`;
+
+                } else {
+                    v.src = `${display.WordMovieSet[0].Path}#t=${clone[indexnow - 2]},${clone[indexnow - 1]}`;
+
+                }
+                v.play()
+                v.playbackRate = play_speed
+            }
+        })
+        var displaytenline
+        $('.more-teach-bottom-area').click(function () {
+            var v = document.getElementById('video1')
+            v.pause()
+            $('.line_box').addClass("display_none")
+            $('.btn').css({
+                color: "#000"
+            })
+            $('.select_arrow').addClass('display_none')
+            $('.teaching').removeClass('display_none')
+            uu = 0
+            $('.more-teach-bottom-area').css({
+                color: "rgb(229, 40, 123)"
+            })
+            doNotReadAudio = 0
+            displaytenline = 0
+            $('.penlineBox').addClass('display_none')
+
+            $('.big_word_area').addClass('display_none')
+            $('.more-t').removeClass('display_none')
+
+            $('.teaching').empty()
+            $('.teaching').append(`           
+             <div class="sound">
+            <img  src="img/volume-up-solid.svg" alt="">
+
+            </div>
+            <img class="soundimg" src=${display.WordsSet[0].Path} alt="">`
+            )
+            convertSizeALL()
+
+        })
+        var audio1
+        $('.teaching').on('click', '.sound', function () {
+            $('.sound').css({
+                background: "#F49499"
+            })
+            console.log(display.WordsSet[0].Audio)
+            var audio1 = new Audio(display.WordsSet[0].Audio);
+            audio1.play();
+            audio1.addEventListener('ended', function () {
+                $('.sound').css({
+                    background: "#79CDBF"
+                })
+            })
+        })
+        var line = 0
+        $('.solid').click(function () {
+            $('.solid').css({
+                border: "2px solid rgb(229,40,123)",
+                color: "rgb(229,40,123)",
+                boxShadow: "0 0 0 #000"
+
+            })
+            $('.btn_ten').not(this).css({
+                border: "none",
+
+                color: "#000",
+                boxShadow: "2px 2px 2px #999999, 0px 0px 2px #999999"
+            })
+            $('.line_box').empty()
+            $('.line_box').append(`
+            <div class="width" style="height: 100.5%;"></div>
+            <div class="height" style="width: 100.5%;"></div>
+            `)
+            convertSizeALL();
+        })
+        $('.dot').css({
+            border: "2px solid rgb(229,40,123)",
+            color: "rgb(229,40,123)",
+            boxShadow: "0 0 0 #000"
+
+        })
+        $('.line_box').append(`
+            <div class="width-dot" style="height: 100.5%;"></div>
+            <div class="height-dot" style="width: 100.5%;"></div>
+            `)
+        $('.dot').click(function () {
+            $('.dot').css({
+                border: "2px solid rgb(229,40,123)",
+                color: "rgb(229,40,123)",
+                boxShadow: "0 0 0 #000"
+
+            })
+            $('.btn_ten').not(this).css({
+                border: "none",
+
+                color: "#000",
+                boxShadow: "2px 2px 2px #999999, 0px 0px 2px #999999"
+            })
+            $('.line_box').empty()
+
+            $('.line_box').append(`
+            <div class="width-dot" style="height: 100.5%;"></div>
+            <div class="height-dot" style="width: 100.5%;"></div>
+            `)
+            convertSizeALL();
+
+        })
+        $('.none').click(function () {
+            $('.none').css({
+                border: "2px solid rgb(229,40,123)",
+                color: "rgb(229,40,123)",
+                boxShadow: "0 0 0 #000"
+
+            })
+            $('.btn_ten').not(this).css({
+                border: "none",
+                color: "#000",
+                boxShadow: "2px 2px 2px #999999, 0px 0px 2px #999999"
+            })
+            $('.line_box').empty()
+
+
+            convertSizeALL();
+
+        })
+
+
+
+
+
+
+        var scale = 1
+
+        var x
+        var y
+        var ox
+        var oy
+        // transform: scale(2.5);
+        function bbimg(o) {
+
+            console.log(event)
+            console.log(event.x)
+            if (event.wheelDelta > 0) {
+                scale = scale + 0.01
+
+            }
+            if (event.wheelDelta < 0) {
+                if (scale > 1) {
+                    scale = scale - 0.01
+
+                }
+
+            }
+            x = Math.abs(event.clientX + ox) / 2
+            y = Math.abs(event.clientY + oy) / 2
+            // y = event.y
+
+            $('.background').css({
+                transform: `scale(${scale})`
+            })
+            var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+            $body.animate({
+                scrollTop: y,
+                scrollLeft: x,
+
+            }, 10);
+            $('html, body').scrollTop(y);
+            $('html, body').scrollLeft(x);
+            ox = event.clientX
+            oy = event.clientY
+            console.log(ox, oy);
+
+            return false;
+        }
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+</html>
