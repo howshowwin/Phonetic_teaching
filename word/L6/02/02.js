@@ -6,7 +6,7 @@ var word2 = {
   "WordMovieSet": [
     {
       "Path": "word/L6/02/02A.mp4",
-      "MoviePointSet": [0, 1.14, 2.29]
+      "MoviePointSet": [0.01, 1.14, 2.29]
     },
     {
       "Path": "word/L6/02/02B.mp4",

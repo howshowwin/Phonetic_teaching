@@ -769,7 +769,7 @@
 
 
         $('.big_word_area').empty()
-        $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[0].Path} width="100%" ></video>`)
+        $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[0].Path}#t=0.01 width="100%" ></video>`)
         $('.penLineNum').html(display.AllNumber)
         $('.stroke_order').css({
             color: "rgb(229,40,123)"
@@ -806,21 +806,21 @@
             $('.big_word_area').removeClass("bigbigvideo")
 
             $('.big_word_area').empty()
-            $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[0].Path} width="100%" ></video>`)
+            $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[0].Path}#t=0.01 width="100%" ></video>`)
 
             if (choose_stroke_teach == 1) {
                 $('.big_word_area').removeClass("bigvideo")
                 $('.big_word_area').removeClass("bigbigvideo")
 
                 $('.big_word_area').empty()
-                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[0].Path}  width="100%" ></video>`)
+                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[0].Path}#t=0.01  width="100%" ></video>`)
             }
             if (choose_write_alert == 1) {
                 $('.big_word_area').removeClass("bigvideo")
                 $('.big_word_area').removeClass("bigbigvideo")
 
                 $('.big_word_area').empty()
-                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[1].Path}  width="100%" ></video>`)
+                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[1].Path}#t=0.01  width="100%" ></video>`)
             }
             if (choose_speak_doit == 1) {
                 $('.big_word_area').addClass("bigvideo")
@@ -830,12 +830,12 @@
                 if (isiOS) {
                      
                     $('.big_word_area').empty()
-                    $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[2].Path_ios}  width="100%" ></video>`)
+                    $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[2].Path_ios}#t=0.01  width="100%" ></video>`)
                 } else {
                      
 
                     $('.big_word_area').empty()
-                    $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[2].Path}  width="100%" ></video>`)
+                    $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[2].Path}#t=0.01  width="100%" ></video>`)
                 }
 
             }
@@ -846,7 +846,7 @@
 
 
                 $('.big_word_area').empty()
-                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[3].Path}  width="100%" ></video>`)
+                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[3].Path}#t=0.01  width="100%" ></video>`)
             }
 
 
@@ -874,11 +874,11 @@
             $('.select_arrow').not(sel).addClass('display_none')
             $(sel).removeClass('display_none')
             $('.big_word_area').empty()
-            $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[num].Path}  width="100%" ></video>`)
+            $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[num].Path}#t=0.01  width="100%" ></video>`)
             if (num == 2 && isiOS == true) {
 
                 $('.big_word_area').empty()
-                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[2].Path_ios}  width="100%" ></video>`)
+                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[2].Path_ios}#t=0.01  width="100%" ></video>`)
             }
 
         }
@@ -1252,11 +1252,11 @@
             console.log(clone[indexnow])
             console.log(cutime[cutime.length - 1])
             if (kk == 1 && uu == 1 && none == 1) {
-                if (indexnow == 1 && clone[indexnow] != 0.01) {
+                if (indexnow == 1 && clone[indexnow] != 0.02) {
                     v.src = `${display.WordMovieSet[0].Path}#t=${clone[indexnow + 1]},${clone[indexnow + 2]}`;
                     v.play()
                 } else if (clone[indexnow] >= cutime[cutime.length - 1] + 0.01) {
-                    v.src = `${display.WordMovieSet[0].Path}#t=0`;
+                    v.src = `${display.WordMovieSet[0].Path}#t=0.01`;
 
                 }
                 else {
