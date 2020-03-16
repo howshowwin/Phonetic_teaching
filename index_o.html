@@ -119,7 +119,7 @@
 
         /* teach */
         .teachWay {
-            border: 2px solid #DE643E;
+
             position: absolute;
             left: 81%;
             background: #fff;
@@ -351,7 +351,6 @@
 
         /* 延伸教學 */
         .more-teach {
-            border: solid 2px #DE643E;
             position: absolute;
             left: 81%;
             top: 45%;
@@ -400,7 +399,6 @@
 
         /* 十字隔線 */
         .ten-word-line {
-            border: solid 2px #DE643E;
             position: absolute;
             left: 81%;
             top: 55.9%;
@@ -573,10 +571,10 @@
                 <div class="word">教學方式</div>
             </div>
             <div class="middle-area">
-                <div class="select_arrow selcetnow1 "><img src="img/caret-right-solid.svg" alt=""></div>
-                <div class="select_arrow selcetnow2 display_none"><img src="img/caret-right-solid.svg" alt=""></div>
-                <div class="select_arrow selcetnow3 display_none"><img src="img/caret-right-solid.svg" alt=""></div>
-                <div class="select_arrow selcetnow4 display_none"><img src="img/caret-right-solid.svg" alt=""></div>
+                <img class="select_arrow selcetnow1" src="img/caret-right-solid.svg" alt="">
+                <img class="select_arrow selcetnow2 display_none" src="img/caret-right-solid.svg" alt="">
+                <img class="select_arrow selcetnow3 display_none" src="img/caret-right-solid.svg" alt="">
+                <img class="select_arrow selcetnow4 display_none" src="img/caret-right-solid.svg" alt="">
 
                 <div class="btn stroke_order">筆順教學</div>
                 <div class="btn stroke_draw ">書寫提醒</div>
@@ -585,14 +583,14 @@
             </div>
 
             <div class="select_btn_area">
-                <div class="down_btn"><img src="img/left.svg" alt=""></div>
+                <img class="down_btn" src="img/left.svg" alt="">
                 <div class="select_btn select_btn1">1</div>
                 <div class="select_btn select_btn2">2</div>
                 <div class="select_btn select_btn3">3</div>
                 <div class="select_btn select_btn4">4</div>
                 <div class="select_btn select_btn5">5</div>
                 <div class="select_btn select_btn6">6</div>
-                <div class="up_btn"><img src="img/right.svg" alt=""></div>
+                <img class="up_btn" src="img/right.svg" alt="">
 
             </div>
             <div class="play_btn_area">
@@ -689,7 +687,10 @@
         //     })
         // }
 
-
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/(iphone|ipad|ipod);?/i)
+         
         // function getClassData(file) {
         //     var jsondata = {};
         //     $.getJSON(file, function (data, status) {
@@ -768,7 +769,7 @@
 
 
         $('.big_word_area').empty()
-        $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[0].Path} width="100%" ></video>`)
+        $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[0].Path}#t=0.01 width="100%" ></video>`)
         $('.penLineNum').html(display.AllNumber)
         $('.stroke_order').css({
             color: "rgb(229,40,123)"
@@ -805,30 +806,38 @@
             $('.big_word_area').removeClass("bigbigvideo")
 
             $('.big_word_area').empty()
-            $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[0].Path} width="100%" ></video>`)
+            $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[0].Path}#t=0.01 width="100%" ></video>`)
 
             if (choose_stroke_teach == 1) {
                 $('.big_word_area').removeClass("bigvideo")
                 $('.big_word_area').removeClass("bigbigvideo")
 
                 $('.big_word_area').empty()
-                $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[0].Path} width="100%" ></video>`)
+                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[0].Path}#t=0.01  width="100%" ></video>`)
             }
             if (choose_write_alert == 1) {
                 $('.big_word_area').removeClass("bigvideo")
                 $('.big_word_area').removeClass("bigbigvideo")
 
                 $('.big_word_area').empty()
-                $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[1].Path} width="100%" ></video>`)
+                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[1].Path}#t=0.01  width="100%" ></video>`)
             }
             if (choose_speak_doit == 1) {
                 $('.big_word_area').addClass("bigvideo")
                 $('.line_box').addClass('display_none')
 
                 $('.big_word_area').removeClass("bigbigvideo")
+                if (isiOS) {
+                     
+                    $('.big_word_area').empty()
+                    $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[2].Path_ios}#t=0.01  width="100%" ></video>`)
+                } else {
+                     
 
-                $('.big_word_area').empty()
-                $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[2].Path} width="100%" ></video>`)
+                    $('.big_word_area').empty()
+                    $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[2].Path}#t=0.01  width="100%" ></video>`)
+                }
+
             }
             if (choose_speak_skill == 1) {
                 $('.big_word_area').removeClass("bigvideo")
@@ -837,7 +846,7 @@
 
 
                 $('.big_word_area').empty()
-                $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[3].Path} width="100%" ></video>`)
+                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[3].Path}#t=0.01  width="100%" ></video>`)
             }
 
 
@@ -865,8 +874,12 @@
             $('.select_arrow').not(sel).addClass('display_none')
             $(sel).removeClass('display_none')
             $('.big_word_area').empty()
-            $('.big_word_area').append(`<video id='video1' src=${display.WordMovieSet[num].Path} width="100%" ></video>`)
+            $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[num].Path}#t=0.01  width="100%" ></video>`)
+            if (num == 2 && isiOS == true) {
 
+                $('.big_word_area').empty()
+                $('.big_word_area').append(`<video poster  webkit-playsinline="true" playsinline="true" id='video1' src=${display.WordMovieSet[2].Path_ios}#t=0.01  width="100%" ></video>`)
+            }
 
         }
         function playvedio() {
@@ -1163,13 +1176,13 @@
             var v = document.getElementById('video1')
             if (v) {
                 $('.play_btn').html(`${v.paused ? "播放" : "暫停"}`)
-                if (v.currentTime == 0) {
+                if (v.currentTime == 0.01) {
                     $('.pre_btn').css({
                         background: "#AAAAAA",
                         color: "#fff"
                     })
                     mm = 0
-                } else if (v.currentTime > 0) {
+                } else if (v.currentTime > 0.01) {
                     $('.pre_btn').css({
                         background: "#fff",
                         color: "#000"
@@ -1239,11 +1252,11 @@
             console.log(clone[indexnow])
             console.log(cutime[cutime.length - 1])
             if (kk == 1 && uu == 1 && none == 1) {
-                if (indexnow == 1 && clone[indexnow] != 0.01) {
+                if (indexnow == 1 && clone[indexnow] != 0.02) {
                     v.src = `${display.WordMovieSet[0].Path}#t=${clone[indexnow + 1]},${clone[indexnow + 2]}`;
                     v.play()
                 } else if (clone[indexnow] >= cutime[cutime.length - 1] + 0.01) {
-                    v.src = `${display.WordMovieSet[0].Path}#t=${clone[0]}`;
+                    v.src = `${display.WordMovieSet[0].Path}#t=0.01`;
 
                 }
                 else {
