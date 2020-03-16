@@ -688,9 +688,9 @@
         // }
 
         var u = navigator.userAgent;
-        var isAndroid = u.WhatSystem.match(/android/i)
-        var isiOS = u.match(/(iphone|ipad|ipod);?/i)
-
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/(iphone|ipad|ipod);?/i)
+        alert(isiOS)
         // function getClassData(file) {
         //     var jsondata = {};
         //     $.getJSON(file, function (data, status) {
