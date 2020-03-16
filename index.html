@@ -1176,13 +1176,13 @@
             var v = document.getElementById('video1')
             if (v) {
                 $('.play_btn').html(`${v.paused ? "播放" : "暫停"}`)
-                if (v.currentTime == 0) {
+                if (v.currentTime == 0.01) {
                     $('.pre_btn').css({
                         background: "#AAAAAA",
                         color: "#fff"
                     })
                     mm = 0
-                } else if (v.currentTime > 0) {
+                } else if (v.currentTime > 0.01) {
                     $('.pre_btn').css({
                         background: "#fff",
                         color: "#000"
