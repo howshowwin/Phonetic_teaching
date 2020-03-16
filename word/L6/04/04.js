@@ -14,6 +14,8 @@ var word4 = {
     },
     {
       "Path": "word/L6/04/04C.mp4",
+      "Path_ios": "word/L6/04/04C_ios.mp4",
+
       "MoviePointSet": []
     },
     {

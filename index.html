@@ -583,14 +583,14 @@
             </div>
 
             <div class="select_btn_area">
-              <img  class="down_btn" src="img/left.svg" alt="">
+                <img class="down_btn" src="img/left.svg" alt="">
                 <div class="select_btn select_btn1">1</div>
                 <div class="select_btn select_btn2">2</div>
                 <div class="select_btn select_btn3">3</div>
                 <div class="select_btn select_btn4">4</div>
                 <div class="select_btn select_btn5">5</div>
                 <div class="select_btn select_btn6">6</div>
-           <img class="up_btn" src="img/right.svg" alt="">
+                <img class="up_btn" src="img/right.svg" alt="">
 
             </div>
             <div class="play_btn_area">
@@ -687,6 +687,9 @@
         //     })
         // }
 
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 
         // function getClassData(file) {
         //     var jsondata = {};
@@ -824,9 +827,14 @@
                 $('.line_box').addClass('display_none')
 
                 $('.big_word_area').removeClass("bigbigvideo")
+                if (isiOS) {
+                    $('.big_word_area').empty()
+                    $('.big_word_area').append(`<video poster playsinline id='video1' src=${display.WordMovieSet[2].Path_ios}  width="100%" ></video>`)
+                } else {
+                    $('.big_word_area').empty()
+                    $('.big_word_area').append(`<video poster playsinline id='video1' src=${display.WordMovieSet[2].Path}  width="100%" ></video>`)
+                }
 
-                $('.big_word_area').empty()
-                $('.big_word_area').append(`<video poster playsinline id='video1' src=${display.WordMovieSet[2].Path}  width="100%" ></video>`)
             }
             if (choose_speak_skill == 1) {
                 $('.big_word_area').removeClass("bigvideo")
@@ -864,7 +872,11 @@
             $(sel).removeClass('display_none')
             $('.big_word_area').empty()
             $('.big_word_area').append(`<video poster playsinline id='video1' src=${display.WordMovieSet[num].Path}  width="100%" ></video>`)
+            if (num == 2 && isiOS == true) {
 
+                $('.big_word_area').empty()
+                $('.big_word_area').append(`<video poster playsinline id='video1' src=${display.WordMovieSet[2].Path_ios}  width="100%" ></video>`)
+            }
 
         }
         function playvedio() {
